@@ -146,7 +146,7 @@ function SaveAllPresetsButton({
   function convertSvgToPngBlob(
     svgContent: string,
     scale: number,
-    imageMetadata: { width: number; height: number; name: string },
+    _imageMetadata: { width: number; height: number; name: string },
   ): Promise<Blob> {
     return new Promise((resolve, reject) => {
       // Scale the SVG
@@ -199,6 +199,7 @@ function SaveAllPresetsButton({
               const fileName = `${svgFileName.replace(/\.svg$/i, "")}-${preset}x.png`;
               zip.file(fileName, blob);
             } catch (err) {
+              console.error(err);
               // Optionally handle error for this preset
             }
           }
